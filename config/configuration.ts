@@ -1,3 +1,8 @@
+import dotenv from 'dotenv';
+
+// * load the environment variables from the .env file
+dotenv.config({ path: process.cwd() + '.env' });
+
 const configuration = {
   port: process.env.PORT,
   mongoURI: process.env.MONGODB_URI,
