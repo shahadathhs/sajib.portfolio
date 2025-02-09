@@ -1,3 +1,4 @@
+// * Single blog post page ("/blogs/[id]")
 "use client";
 
 import { useParams } from "next/navigation";

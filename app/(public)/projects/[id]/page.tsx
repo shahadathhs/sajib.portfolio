@@ -1,3 +1,4 @@
+// * Single project detail page ("/projects/[id]")
 "use client";
 
 import { useParams } from "next/navigation";

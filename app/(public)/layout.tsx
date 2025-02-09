@@ -1,3 +1,4 @@
+// * Shared public layout (header, footer, etc.)
 import Footer from "@/lib/shared/Footer";
 import Navbar from "@/lib/shared/Navbar";
 

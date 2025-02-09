@@ -1,3 +1,4 @@
+// * Home page ("/")
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { Button } from "@/components/ui/button";
 import { TextRevealCardPreview } from "@/lib/components/TextRevealCardPreview";
