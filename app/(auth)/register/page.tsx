@@ -2,25 +2,22 @@
 
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 export default function RegisterPage() {
   const [name, setName] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
-  const [success, setSuccess] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
-    setSuccess("");
 
     // Basic client-side validation
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -36,17 +33,17 @@ export default function RegisterPage() {
       const data = await response.json();
 
       if (!response.ok) {
-        setError(data.error || "Registration failed");
+        toast.error(data.error || "Registration failed");
       } else {
-        setSuccess(data.message || "Registration successful!");
-        // * redirect after a short delay
+        toast.success(data.message || "Registration successful!");
+        // Redirect after a short delay
         setTimeout(() => {
           router.push("/login");
         }, 1500);
       }
     } catch (err) {
       console.error("Registration failed:", err);
-      setError("Something went wrong. Please try again.");
+      toast.error("Something went wrong. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -56,10 +53,6 @@ export default function RegisterPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md bg-white rounded-md shadow-md p-6">
         <h1 className="text-2xl font-bold text-center mb-6">Register</h1>
-        {error && <p className="mb-4 text-center text-red-500">{error}</p>}
-        {success && (
-          <p className="mb-4 text-center text-green-500">{success}</p>
-        )}
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label
