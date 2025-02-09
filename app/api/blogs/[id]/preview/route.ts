@@ -1,0 +1,1 @@
+// * This file is a preview route for the blog with the given id.

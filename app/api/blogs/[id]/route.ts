@@ -1,0 +1,1 @@
+// * Operations for a specific blog
