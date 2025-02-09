@@ -30,6 +30,7 @@ export default function LoginPage() {
         // * Store token and role for protected route validations
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
+        localStorage.setItem('user', JSON.stringify(data.user));
 
         toast.success(data.message || "Login successful!");
 

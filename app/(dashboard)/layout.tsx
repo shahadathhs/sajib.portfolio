@@ -43,7 +43,7 @@ export default function AdminLayout({
   }
 
   return (
-    <main className="min-h-screen flex">
+    <main className="min-h-screen w-full flex justify-between">
       <Sidebar />
       {children}
     </main>
