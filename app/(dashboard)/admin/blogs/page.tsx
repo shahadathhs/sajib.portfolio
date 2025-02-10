@@ -55,7 +55,7 @@ export default function AdminBlogs() {
         {blogs.map((blog) => (
           <li
             key={blog._id}
-            className="border p-3 flex justify-between items-center"
+            className="border p-3 flex justify-between items-center mt-2"
           >
             <span>{blog.title}</span>
             <div>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useRouter, useParams } from "next/navigation";
 import dynamic from "next/dynamic";
+import toast from "react-hot-toast";
 
 const MDEditor = dynamic(() => import("@uiw/react-md-editor"), { ssr: false });
 
@@ -18,12 +19,13 @@ export default function EditBlog() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          setTitle(data.blog.title);
-          setContent(data.blog.content);
+          setTitle(data.blog[0].title);
+          setContent(data.blog[0].content);
+          console.log("data.blog:", data.blog);
         }
       })
       .catch((err) => console.error("Error fetching blog:", err));
-  }, [id]);
+  }, []);
 
   const handleUpdate = async () => {
     try {
@@ -35,13 +37,17 @@ export default function EditBlog() {
 
       const data = await res.json();
       if (data.success) {
-        alert("Blog updated successfully!");
+        toast.dismiss();
+        toast.success("Blog updated successfully!");
         router.push("/admin/blogs");
       } else {
-        alert("Error updating blog");
+        toast.dismiss();
+        toast.error("Error updating blog");
       }
     } catch (error) {
       console.error("Update failed:", error);
+      toast.dismiss();
+      toast.error("Error updating blog");
     }
   };
 
@@ -54,6 +60,7 @@ export default function EditBlog() {
         onChange={(e) => setTitle(e.target.value)}
         className="w-full p-2 border rounded mb-4"
         placeholder="Enter blog title"
+        defaultValue={title}
       />
       <MDEditor
         value={content}
