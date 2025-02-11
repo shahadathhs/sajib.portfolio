@@ -12,6 +12,7 @@ export default function EditBlog() {
   const router = useRouter();
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     if (!id) return;
@@ -28,6 +29,7 @@ export default function EditBlog() {
   }, []);
 
   const handleUpdate = async () => {
+    setSaving(true);
     try {
       const res = await fetch(`/api/blogs/${id}`, {
         method: "PUT",
@@ -48,6 +50,8 @@ export default function EditBlog() {
       console.error("Update failed:", error);
       toast.dismiss();
       toast.error("Error updating blog");
+    } finally {
+      setSaving(false);
     }
   };
 
@@ -64,13 +68,15 @@ export default function EditBlog() {
       />
       <MDEditor
         value={content}
+        height={400}
         onChange={(value) => setContent(value as string)}
       />
       <button
         onClick={handleUpdate}
-        className="bg-green-500 text-white px-4 py-2 mt-4 rounded"
+        disabled={saving}
+        className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
       >
-        Save Changes
+        {saving ? "Saving..." : "Update Blog"}
       </button>
     </div>
   );

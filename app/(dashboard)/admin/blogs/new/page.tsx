@@ -11,8 +11,10 @@ export default function CreateBlog() {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const router = useRouter();
+  const [creating, setCreating] = useState(false);
 
   const handleCreate = async () => {
+    setCreating(true);
     if (!title.trim() || !content.trim()) {
       toast.error("Title and content are required");
       return;
@@ -35,6 +37,8 @@ export default function CreateBlog() {
     } catch (error) {
       console.error("Error creating blog:", error);
       toast.error("Failed to create blog");
+    } finally {
+      setCreating(false);
     }
   };
 
@@ -50,13 +54,15 @@ export default function CreateBlog() {
       />
       <MDEditor
         value={content}
+        height={400}
         onChange={(value) => setContent(value as string)}
       />
       <button
         onClick={handleCreate}
+        disabled={creating}
         className="bg-blue-500 text-white px-4 py-2 mt-4 rounded"
       >
-        Publish Blog
+        {creating ? "Creating..." : "Create Blog"}
       </button>
     </div>
   );

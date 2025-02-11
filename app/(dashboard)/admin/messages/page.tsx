@@ -62,7 +62,7 @@ export default function AdminMessagesPage() {
       {!loading && messages.length === 0 && <p>No messages found.</p>}
       <div className="space-y-4">
         {messages.map((msg) => (
-          <div key={msg._id} className="p-4 bg-white rounded shadow">
+          <div key={msg._id} className="p-4 rounded-md shadow-md">
             <div className="flex justify-between">
               <div>
                 <p>
@@ -74,10 +74,11 @@ export default function AdminMessagesPage() {
                 <p>
                   <span className="font-bold">Message:</span> {msg.message}
                 </p>
-                <p className="text-sm text-gray-500">
+                <p className="text-sm text-gray-400">
                   {new Date(msg.createdAt).toLocaleString()}
                 </p>
               </div>
+              {/* Delete button */}
               <div>
                 <button
                   onClick={() => handleDelete(msg._id)}

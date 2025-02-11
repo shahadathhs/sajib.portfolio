@@ -49,7 +49,7 @@ export default function AdminLayout({
     <main className="min-h-screen w-full flex justify-between">
       <div className="drawer lg:drawer-open">
         <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-        <div className="drawer-content flex flex-col items-center justify-center">
+        <div className="drawer-content flex flex-col items-center justify-start">
           {/* Page content here */}
           {children}
 
@@ -94,4 +94,7 @@ export default function AdminLayout({
 const navItems = [
   { label: "Home", route: "/" },
   { label: "Admin", route: "/admin" },
+  { label: "Blogs", route: "/admin/blogs" },
+  { label: "Messages", route: "/admin/messages" },
+  { label: "Projects", route: "/admin/projects" },
 ];
