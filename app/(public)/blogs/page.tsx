@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { IBlog } from "@/models/Blog";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Blogs() {
   const [blogs, setBlogs] = useState<IBlog[]>([]);
@@ -27,11 +28,11 @@ export default function Blogs() {
 
   return (
     <div className="container mx-auto py-4">
-      <h1 className="text-2xl font-bold mb-4">Blog List</h1>
+      <h1 className="text-2xl font-bold mb-4">Read Blogs</h1>
       <ul className="space-y-4">
         {blogs.length > 0 ? (
           blogs.map((blog) => (
-            <li key={blog.id} className="border-b pb-4">
+            <li key={uuidv4()} className="border-b pb-4">
               <Link
                 href={`/blogs/${blog._id}`}
                 className="text-lg font-semibold underline"

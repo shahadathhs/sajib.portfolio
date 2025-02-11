@@ -2,3 +2,8 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark, cupcake;
 }
+
+/* Min height calc */
+.min-h-calc {
+  min-height: calc(100vh - 48px);
+}

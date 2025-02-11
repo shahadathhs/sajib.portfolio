@@ -8,9 +8,16 @@ export default function PublicLayout({
   children: React.ReactNode;
 }) {
   return (
-    <main className="min-h-screen container mx-auto px-4">
-      <Navbar />
-      {children}
+    <main className="container mx-auto px-4">
+      {/* navbar */}
+      <div className="absolute top-0 left-0 right-0">
+        <Navbar />
+      </div>
+
+      {/* main content */}
+      <div className="min-h-calc pt-20">{children}</div>
+
+      {/* footer */}
       <Footer />
     </main>
   );

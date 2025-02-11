@@ -10,8 +10,8 @@ export async function GET(
 ) {
   try {
     await dbConnect();
-    const { id } = params;
-    const blog = await Blog.find({ _id: id });
+
+    const blog = await Blog.find({ _id: params.id });
     if (!blog) {
       return NextResponse.json({ error: "Blog not found" }, { status: 404 });
     }

@@ -8,7 +8,7 @@ const navItems = [
 
 export default function Navbar() {
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar bg-base-100 rounded-sm shadow-md container mx-auto px-4">
       <div className="flex-1">
         <a className="btn btn-ghost text-xl">daisyUI</a>
       </div>
@@ -20,7 +20,7 @@ export default function Navbar() {
           <li>
             <details>
               <summary>Menu</summary>
-              <ul className="bg-base-100 rounded-t-none p-2">
+              <ul className="bg-base-100 rounded-t-none p-2 z-50">
                 {navItems.map((item) => (
                   <li key={item.label}>
                     <Link href={item.route}>{item.label}</Link>
