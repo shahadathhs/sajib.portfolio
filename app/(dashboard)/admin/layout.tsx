@@ -2,9 +2,9 @@
 
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import Sidebar from "@/lib/shared/Sidebar";
 import { USER_ROLES } from "@/models/User";
 import toast from "react-hot-toast";
+import AdminSidebar from "@/lib/shared/sidebar/AdminSidebar";
 
 export default function AdminLayout({
   children,
@@ -21,15 +21,18 @@ export default function AdminLayout({
 
     if (!token || !role) {
       router.push("/login");
+      toast.dismiss();
       toast.error("Login required to access this page.");
     } else if (token && role === USER_ROLES.USER) {
-      router.push("/");
+      router.push("/user");
+      toast.dismiss();
       toast.error("You are not authorized to access this page.");
     } else if (token && role === USER_ROLES.ADMIN) {
       setAuthorized(true);
       // toast.success("Welcome to the admin dashboard!");
     } else {
       router.push("/login");
+      toast.dismiss();
       toast.error("Login required to access this page.");
     }
   }, [router]);
@@ -44,7 +47,7 @@ export default function AdminLayout({
 
   return (
     <main className="min-h-screen w-full flex justify-between">
-      <Sidebar />
+      <AdminSidebar />
       {children}
     </main>
   );

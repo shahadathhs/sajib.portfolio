@@ -35,11 +35,15 @@ export default function LoginPage() {
         toast.dismiss();
         toast.success(data.message || "Login successful!");
 
-        // Redirect based on role:
+        // * Redirect based on role:
         if (data.role === USER_ROLES.ADMIN) {
           router.push("/admin");
           toast.dismiss();
           toast.success("Welcome, Admin!");
+        } else if (data.role === USER_ROLES.USER) {
+          router.push("/user");
+          toast.dismiss();
+          toast.success("Welcome, User!");
         } else {
           router.push("/");
           toast.dismiss();
