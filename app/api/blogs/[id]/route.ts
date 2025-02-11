@@ -1,15 +1,20 @@
 // app/api/blogs/[id]/route.ts
 import dbConnect from "@/lib/dbConnect";
 import Blog from "@/models/Blog";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { params }: { params: any }
 ) {
   try {
     await dbConnect();
-    const blog = await Blog.find({ _id: params.id });
+    const { id } = params;
+    const blog = await Blog.find({ _id: id });
+    if (!blog) {
+      return NextResponse.json({ error: "Blog not found" }, { status: 404 });
+    }
     return NextResponse.json(
       {
         success: true,
@@ -29,7 +34,8 @@ export async function GET(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { params }: { params: any }
 ) {
   try {
     await dbConnect();
@@ -50,7 +56,8 @@ export async function DELETE(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { params }: { params: any }
 ) {
   try {
     const { id } = params;

@@ -4,7 +4,8 @@ import Message from "@/models/Message";
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  { params }: { params: any }
 ) {
   try {
     await dbConnect();
