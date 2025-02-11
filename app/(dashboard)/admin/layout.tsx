@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { USER_ROLES } from "@/models/User";
 import toast from "react-hot-toast";
-import AdminSidebar from "@/lib/shared/sidebar/AdminSidebar";
+import Link from "next/link";
 
 export default function AdminLayout({
   children,
@@ -47,8 +47,51 @@ export default function AdminLayout({
 
   return (
     <main className="min-h-screen w-full flex justify-between">
-      <AdminSidebar />
-      {children}
+      <div className="drawer lg:drawer-open">
+        <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+        <div className="drawer-content flex flex-col items-center justify-center">
+          {/* Page content here */}
+          {children}
+
+          {/* button to open drawer in mobile view */}
+          <div className="fixed top-4 right-4 z-50">
+            <label
+              htmlFor="my-drawer-2"
+              className="btn btn-primary drawer-button lg:hidden"
+            >
+              Open Menu
+            </label>
+          </div>
+        </div>
+
+        {/* Drawer side content here */}
+        <div className="drawer-side">
+          <label
+            htmlFor="my-drawer-2"
+            aria-label="close sidebar"
+            className="drawer-overlay"
+          ></label>
+          <ul className="menu bg-base-200 text-base-content min-h-full w-40 p-4">
+            {/* Sidebar content here */}
+            <li>
+              {navItems.map((item) => (
+                <Link
+                  key={item.label}
+                  href={item.route}
+                  className="btn btn-ghost text-md"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </li>
+          </ul>
+        </div>
+      </div>
     </main>
   );
 }
+
+const navItems = [
+  { label: "Home", route: "/" },
+  { label: "Admin", route: "/admin" },
+];
