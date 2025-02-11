@@ -40,6 +40,7 @@ export default function RootAdminPage() {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
     localStorage.removeItem("role");
+    toast.dismiss();
     toast.success("Logged out successfully");
     router.push("/login");
   };
@@ -54,8 +55,8 @@ export default function RootAdminPage() {
   }
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-100 p-6">
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8">
+    <div className="min-h-screen w-full flex items-center justify-center p-6">
+      <div className="max-w-4xl mx-auto rounded-lg shadow-md p-8">
         <div className="flex justify-between items-center border-b pb-4 mb-4">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
           <button
@@ -80,8 +81,22 @@ export default function RootAdminPage() {
             </p>
           </div>
           <div>
-            <h2 className="text-xl font-semibold mb-2">Authentication Token</h2>
-            <p className="break-all text-sm text-gray-700">{user.token}</p>
+            <div className="flex items-center justify-between mb-2">
+              <h2 className="text-xl font-semibold">Authentication Token</h2>
+              {/* Copy button */}
+              <button
+                onClick={() => {
+                  navigator.clipboard.writeText(user.token);
+                  toast.dismiss();
+                  toast.success("Token Copied to clipboard");
+                }}
+                className="ml-2 px-2 py-1 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 transition-colors"
+                title="Copy Token"
+              >
+                Copy
+              </button>
+            </div>
+            <p className="break-all text-sm text-gray-400">{user.token}</p>
           </div>
         </div>
       </div>
