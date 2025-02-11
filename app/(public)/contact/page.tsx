@@ -47,16 +47,16 @@ export default function ContactPage() {
   };
 
   return (
-    <div className="w-full h-screen p-4 justify-between items-center mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="w-full min-h-calc -mt-20 pt-20 h-full p-4 justify-between items-center mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
       {/* Contact Form */}
-      <div className="bg-white border max-w-lg mx-auto rounded-md shadow-md p-6">
-        <h1 className="text-2xl font-bold mb-4 text-center">Contact With Me</h1>
+      <div className="max-w-lg mx-auto rounded-md shadow-md p-4">
+        <h1 className="text-2xl font-bold mb-4 text-center">Sent Me Message</h1>
         <form onSubmit={handleSubmit} className="w-72 mx-auto">
           {/* Name */}
           <div className="mb-4">
             <label
               htmlFor="name"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-blue-500"
             >
               Name
             </label>
@@ -74,7 +74,7 @@ export default function ContactPage() {
           <div className="mb-4">
             <label
               htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-blue-500"
             >
               Email
             </label>
@@ -92,7 +92,7 @@ export default function ContactPage() {
           <div className="mb-4">
             <label
               htmlFor="message"
-              className="block text-sm font-medium text-gray-700"
+              className="block text-sm font-medium text-blue-500"
             >
               Message
             </label>
@@ -117,8 +117,8 @@ export default function ContactPage() {
         </form>
       </div>
       {/* Social Links */}
-      <div className="bg-white border max-w-lg mx-auto rounded-md shadow-md p-6 flex flex-col justify-center">
-        <h2 className="text-2xl font-bold mb-4 text-center">Connect With Me</h2>
+      <div className="max-w-lg mx-auto rounded-md shadow-md p-6 flex flex-col justify-center">
+        <h2 className="text-2xl font-bold mb-4 text-center">Social Links</h2>
         <div className="space-y-6">
           {/* GitHub Link */}
           <div className="flex items-center space-x-3">
@@ -139,7 +139,7 @@ export default function ContactPage() {
               href="https://github.com/shahadathhs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg text-gray-700 hover:underline"
+              className="text-lg text-blue-500 hover:underline"
             >
               GitHub
             </Link>
@@ -163,7 +163,9 @@ export default function ContactPage() {
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
 
-            <span className="text-lg text-gray-700">{contactEmail}</span>
+            <span className="text-xs text-blue-500">
+              {contactEmail}
+            </span>
             <button onClick={handleCopyEmail}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -197,7 +199,7 @@ export default function ContactPage() {
               href="https://linkedin.com/in/shahadathhs"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-lg text-gray-700 hover:underline"
+              className="text-lg text-blue-500 hover:underline"
             >
               LinkedIn
             </Link>
