@@ -32,15 +32,17 @@ export default function LoginPage() {
         localStorage.setItem("token", data.token);
         localStorage.setItem("role", data.role);
         localStorage.setItem("user", JSON.stringify(data.user));
-
+        toast.dismiss();
         toast.success(data.message || "Login successful!");
 
         // Redirect based on role:
         if (data.role === USER_ROLES.ADMIN) {
           router.push("/admin");
+          toast.dismiss();
           toast.success("Welcome, Admin!");
         } else {
           router.push("/");
+          toast.dismiss();
           toast.success("Login successful!");
         }
       }
@@ -53,72 +55,66 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
-      {/* Header with Home (logo) */}
-      <header className="flex items-center justify-between p-4">
-        <Link href="/">
-          <span className="text-2xl font-bold text-indigo-600 cursor-pointer">
-            Logo
-          </span>
-        </Link>
-      </header>
-      {/* Main Content */}
-      <div className="flex h-full items-center justify-center p-4">
-        <div className="w-full max-w-md bg-white rounded-md shadow-md p-6">
-          <h1 className="text-2xl font-bold text-center mb-6">Login</h1>
-          <form onSubmit={handleSubmit}>
-            <div className="mb-4">
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Email
-              </label>
-              <input
-                id="email"
-                type="email"
-                required
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
-                placeholder="you@example.com"
-              />
-            </div>
-            <div className="mb-6">
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                required
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
-                placeholder="Enter your password"
-              />
-            </div>
-            <div className="text-sm text-gray-600 mb-2">
-              New here?{" "}
-              <Link href="/register">
-                <span className="text-indigo-600 hover:underline cursor-pointer">
-                  Register
-                </span>
-              </Link>
-            </div>
-            <button
-              type="submit"
-              disabled={loading}
-              className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50 transition-colors"
-            >
-              {loading ? "Logging in..." : "Login"}
-            </button>
-          </form>
+    <div className="max-w-md mx-auto rounded-md shadow-md p-6 mt-20">
+      <h1 className="text-2xl font-bold text-center mb-6">
+        Login to your account
+      </h1>
+      {/* Login Form */}
+      <form onSubmit={handleSubmit}>
+        {/* Email Input */}
+        <div className="mb-4">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-blue-500"
+          >
+            Email
+          </label>
+          <input
+            id="email"
+            type="email"
+            required
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+            placeholder="you@example.com"
+          />
         </div>
-      </div>
+        {/* Password Input */}
+        <div className="mb-6">
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-blue-500"
+          >
+            Password
+          </label>
+          <input
+            id="password"
+            type="password"
+            required
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 p-2"
+            placeholder="Enter your password"
+          />
+        </div>
+        {/* Register Link */}
+        <div className="text-sm text-gray-400 mb-2">
+          New here?{" "}
+          <Link href="/register">
+            <span className="text-indigo-600 hover:underline cursor-pointer">
+              Register
+            </span>
+          </Link>
+        </div>
+        {/* Login Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-2 px-4 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 disabled:opacity-50 transition-colors"
+        >
+          {loading ? "Logging in..." : "Login"}
+        </button>
+      </form>
     </div>
   );
 }
