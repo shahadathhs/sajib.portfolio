@@ -9,7 +9,8 @@ import {
   SiTypescript,
   SiRemix,
   SiReactrouter,
-  SiGithub,
+  // SiGithub,
+  SiJest,
 } from "react-icons/si";
 import { FaGit } from "react-icons/fa";
 import { v4 as uuid } from "uuid";
@@ -26,7 +27,8 @@ const skills = [
   { name: "Express.js", icon: <SiExpress size={48} color="#000000" /> },
   { name: "MongoDB", icon: <SiMongodb size={48} color="#4DB33D" /> },
   { name: 'Git', icon: <FaGit size={48} color="#F05032" />},
-  { name: 'GitHub', icon: <SiGithub size={48} color="#000000" /> },
+  { name: 'Jest', icon: <SiJest size={48} color="#000000" /> },
+  // { name: 'GitHub', icon: <SiGithub size={48} color="#000000" /> },
 ];
 
 export default function Skills() {
