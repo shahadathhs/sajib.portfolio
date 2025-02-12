@@ -1,7 +1,6 @@
-// * Project editing/creation ("/admin/projects/[id]")
-export default function AdminProjectCE() {
+export default function AdminProjectEdit() {
   return (
-    <div>AdminProjectCE</div>
+    <div>AdminProjectEdit</div>
   )
 }
 
