@@ -92,6 +92,6 @@ export default function UserLayout({
 
 const navItems = [
   { label: "Home", route: "/" },
-  { label: "Blogs", route: "/blogs" },
+  // { label: "Blogs", route: "/blogs" },
   { label: "User", route: "/user" },
 ];
