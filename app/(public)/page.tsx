@@ -1,4 +1,5 @@
 import Banner from "@/lib/components/Banner";
+import FeaturedProjects from "@/lib/components/FeaturedProjects";
 import Skills from "@/lib/components/Skills";
 
 export default function Home() {
@@ -6,6 +7,7 @@ export default function Home() {
     <div className="mb-2">
       <Banner />
       <Skills />
+      <FeaturedProjects />
     </div>
   );
 }
